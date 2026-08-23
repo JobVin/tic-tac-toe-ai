@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A modern Tic-Tac-Toe game with a simple AI opponent built in vanilla HTML, CSS, and JavaScript.">
+  <title>Tic-Tac-Toe AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-container">
+    <header class="header">
+      <h1>Tic-Tac-Toe</h1>
+      <p class="subtitle">Play against the AI</p>
+    </header>
+
+    <!-- Scoreboard Section -->
+    <section class="scoreboard">
+      <div class="score-card player">
+        <span class="label">PLAYER (X)</span>
+        <span id="player-score" class="val">0</span>
+      </div>
+      <div class="score-card ties">
+        <span class="label">DRAWS</span>
+        <span id="ties-score" class="val">0</span>
+      </div>
+      <div class="score-card ai">
+        <span class="label">AI (O)</span>
+        <span id="ai-score" class="val">0</span>
+      </div>
+    </section>
+
+    <!-- Game Status Display -->
+    <div id="status-text" class="status-text">Your turn! (X)</div>
+
+    <!-- 3x3 Game Board -->
+    <main class="board" id="board" aria-label="Tic Tac Toe Board">
+      <button class="cell" data-index="0" aria-label="Cell 1"></button>
+      <button class="cell" data-index="1" aria-label="Cell 2"></button>
+      <button class="cell" data-index="2" aria-label="Cell 3"></button>
+      <button class="cell" data-index="3" aria-label="Cell 4"></button>
+      <button class="cell" data-index="4" aria-label="Cell 5"></button>
+      <button class="cell" data-index="5" aria-label="Cell 6"></button>
+      <button class="cell" data-index="6" aria-label="Cell 7"></button>
+      <button class="cell" data-index="7" aria-label="Cell 8"></button>
+      <button class="cell" data-index="8" aria-label="Cell 9"></button>
+    </main>
+
+    <!-- Controls -->
+    <footer class="controls">
+      <button id="restart-btn" class="btn-restart">New Game</button>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,235 @@
+/* Root Variables for Light / Wordle-inspired Palette */
+:root {
+  --bg-color: #f8fafc;
+  --card-bg: #ffffff;
+  --border-color: #d3d6da;
+  --border-subtle: #e2e8f0;
+  
+  /* Markers & Accents */
+  --color-x: #538d4e;        /* Wordle Green */
+  --color-o: #b59f3b;        /* Wordle Yellow/Ochre */
+  --color-x-bg: #f0fdf4;
+  --color-o-bg: #fefce8;
+  
+  --text-primary: #1a1a1b;
+  --text-secondary: #787c7e;
+  
+  --winner-bg: #6aaa64;
+  --winner-text: #ffffff;
+}
+
+/* Reset & Modern Typography Setup */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  padding: 20px;
+}
+
+/* App Wrapper Container */
+.app-container {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  padding: 32px 28px;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  text-align: center;
+}
+
+/* Header */
+.header h1 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.5px;
+}
+
+.header .subtitle {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  margin-top: 4px;
+  font-weight: 500;
+}
+
+/* Scoreboard */
+.scoreboard {
+  display: flex;
+  width: 100%;
+  gap: 12px;
+  justify-content: space-between;
+}
+
+.score-card {
+  flex: 1;
+  background: #f1f5f9;
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  padding: 10px 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.score-card .label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: var(--text-secondary);
+}
+
+.score-card.player .label { color: var(--color-x); }
+.score-card.ai .label { color: var(--color-o); }
+
+.score-card .val {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+/* Game Status Message */
+.status-text {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  min-height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Board Grid */
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 10px;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+}
+
+/* Cell Styling */
+.cell {
+  background: #ffffff;
+  border: 2px solid var(--border-color);
+  border-radius: 14px;
+  color: var(--text-primary);
+  font-size: 3rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  outline: none;
+  transition: transform 0.15s ease, border-color 0.15s ease, background-color 0.15s ease;
+  user-select: none;
+}
+
+.cell:hover:not(.x):not(.o) {
+  border-color: #878a8c;
+  transform: translateY(-2px);
+  background-color: #f8fafc;
+}
+
+.cell:active:not(.x):not(.o) {
+  transform: scale(0.96);
+}
+
+/* Marker Styling */
+.cell.x {
+  color: var(--color-x);
+  background-color: var(--color-x-bg);
+  border-color: var(--color-x);
+  animation: popIn 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  cursor: default;
+}
+
+.cell.o {
+  color: var(--color-o);
+  background-color: var(--color-o-bg);
+  border-color: var(--color-o);
+  animation: popIn 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  cursor: default;
+}
+
+/* Winner Cell Highlight */
+.cell.winner {
+  background-color: var(--winner-bg) !important;
+  color: var(--winner-text) !important;
+  border-color: var(--winner-bg) !important;
+  animation: pulseWinner 1s infinite alternate ease-in-out;
+}
+
+/* Controls / Restart Button */
+.controls {
+  width: 100%;
+}
+
+.btn-restart {
+  width: 100%;
+  padding: 14px;
+  font-size: 1rem;
+  font-weight: 700;
+  border-radius: 12px;
+  border: none;
+  background-color: #1a1a1b;
+  color: #ffffff;
+  cursor: pointer;
+  transition: background-color 0.15s ease, transform 0.15s ease;
+}
+
+.btn-restart:hover {
+  background-color: #3a3a3c;
+  transform: translateY(-2px);
+}
+
+.btn-restart:active {
+  transform: translateY(0);
+}
+
+/* Animations */
+@keyframes popIn {
+  0% {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes pulseWinner {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.03);
+  }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 380px) {
+  .app-container {
+    padding: 24px 18px;
+  }
+  .cell {
+    font-size: 2.4rem;
+  }
+}
