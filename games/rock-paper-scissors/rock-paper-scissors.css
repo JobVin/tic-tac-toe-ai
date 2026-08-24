@@ -1,0 +1,226 @@
+/* ==========================================
+   ROCK PAPER SCISSORS GAME MODULE STYLING
+   (90deg / -90deg Rotated 4x Large Hands)
+   ========================================== */
+
+#rock-paper-scissors-view {
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+/* Full Width Container */
+.rps-container {
+  max-width: 100% !important;
+  width: 100%;
+  padding: 16px 8px;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+/* Header & Scoreboard Centered */
+.rps-container .header,
+.rps-container .scoreboard,
+.rps-container .status-text {
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+/* Borderless Full-Width Battle Arena for Large Hands */
+.rps-arena {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 320px;
+  padding: 0 10px;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  position: relative;
+  overflow: visible;
+  margin: 16px 0;
+}
+
+.arena-side {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  position: relative;
+}
+
+.arena-side.player-side {
+  align-items: flex-start;
+}
+
+.arena-side.ai-side {
+  align-items: flex-end;
+}
+
+.side-label {
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--text-secondary);
+  letter-spacing: 0.5px;
+  background: #ffffff;
+  padding: 4px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+/* Hand Choice Containers - 4x Larger Size */
+.choice-display {
+  width: 220px;
+  height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 7.5rem;
+  position: relative;
+  transition: transform 0.25s ease;
+}
+
+/* PLAYER HAND (LEFT SIDE): Rotated 90 degrees */
+.player-side .choice-display {
+  transform-origin: center center;
+  transform: rotate(90deg);
+}
+
+/* AI HAND (RIGHT SIDE): Rotated -90 degrees */
+.ai-side .choice-display {
+  transform-origin: center center;
+  transform: rotate(-90deg);
+}
+
+/* Shaking Arc Animations */
+.player-side .choice-display.animating-hand {
+  animation: player90Pound 0.55s ease-in-out infinite;
+}
+
+.ai-side .choice-display.animating-hand {
+  animation: ai90Pound 0.55s ease-in-out infinite;
+}
+
+/* Transparent Custom Hand PNG Image Styling - 4x Larger */
+.hand-img {
+  width: 200px;
+  height: 200px;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.15));
+}
+
+/* Central VS Badge */
+.arena-vs {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--text-secondary);
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  padding: 10px 18px;
+  border-radius: 20px;
+  z-index: 5;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+/* Winner Highlight */
+.choice-display.winner-choice {
+  animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Bottom Selector Cards */
+.rps-choices {
+  display: flex;
+  gap: 14px;
+  width: 100%;
+  max-width: 480px;
+  margin: 16px auto 0;
+}
+
+.rps-choice-btn {
+  flex: 1;
+  background: #ffffff;
+  border: 2px solid var(--border-color);
+  border-radius: 16px;
+  padding: 16px 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  user-select: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+.rps-choice-btn:hover {
+  border-color: var(--accent-color);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+}
+
+.rps-choice-btn:active {
+  transform: translateY(0);
+}
+
+.choice-icon {
+  font-size: 2.4rem;
+  line-height: 1;
+}
+
+.choice-name {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.rps-container .controls {
+  max-width: 480px;
+  margin: 12px auto 0;
+}
+
+
+/* ==========================================
+   90deg / -90deg POUNDING ANIMATIONS
+   ==========================================
+*/
+
+@keyframes player90Pound {
+  0% {
+    transform: rotate(90deg) translateY(0);
+  }
+  25% {
+    transform: rotate(70deg) translateY(-25px);
+  }
+  50% {
+    transform: rotate(90deg) translateY(0);
+  }
+  75% {
+    transform: rotate(70deg) translateY(-25px);
+  }
+  100% {
+    transform: rotate(90deg) translateY(0);
+  }
+}
+
+@keyframes ai90Pound {
+  0% {
+    transform: rotate(-90deg) translateY(0);
+  }
+  25% {
+    transform: rotate(-70deg) translateY(-25px);
+  }
+  50% {
+    transform: rotate(-90deg) translateY(0);
+  }
+  75% {
+    transform: rotate(-70deg) translateY(-25px);
+  }
+  100% {
+    transform: rotate(-90deg) translateY(0);
+  }
+}

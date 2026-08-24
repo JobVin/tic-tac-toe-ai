@@ -1,0 +1,108 @@
+/* ==========================================
+   TIC-TAC-TOE GAME MODULE STYLING
+   ========================================== */
+
+#tic-tac-toe-view {
+  align-items: center;
+  justify-content: center;
+}
+
+/* AI Difficulty Selector */
+.difficulty-section {
+  width: 100%;
+}
+
+.difficulty-options {
+  display: flex;
+  background: #f1f5f9;
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  padding: 4px;
+  gap: 4px;
+}
+
+.difficulty-btn {
+  flex: 1;
+  padding: 8px 12px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.difficulty-btn:hover:not(.active) {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.difficulty-btn.active {
+  background: #ffffff;
+  color: var(--text-primary);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+/* Board Grid */
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 10px;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+}
+
+/* Cell Styling */
+.cell {
+  background: #ffffff;
+  border: 2px solid var(--border-color);
+  border-radius: 14px;
+  color: var(--text-primary);
+  font-size: 3rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  outline: none;
+  transition: transform 0.15s ease, border-color 0.15s ease, background-color 0.15s ease;
+  user-select: none;
+}
+
+.cell:hover:not(.x):not(.o) {
+  border-color: #878a8c;
+  transform: translateY(-2px);
+  background-color: #f8fafc;
+}
+
+.cell:active:not(.x):not(.o) {
+  transform: scale(0.96);
+}
+
+/* Marker Styling */
+.cell.x {
+  color: var(--color-x);
+  background-color: var(--color-x-bg);
+  border-color: var(--color-x);
+  animation: popIn 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  cursor: default;
+}
+
+.cell.o {
+  color: var(--color-o);
+  background-color: var(--color-o-bg);
+  border-color: var(--color-o);
+  animation: popIn 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  cursor: default;
+}
+
+/* Winner Cell Highlight */
+.cell.winner {
+  background-color: var(--winner-bg) !important;
+  color: var(--winner-text) !important;
+  border-color: var(--winner-bg) !important;
+  animation: pulseWinner 1s infinite alternate ease-in-out;
+}

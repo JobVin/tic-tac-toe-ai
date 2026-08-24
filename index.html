@@ -3,58 +3,329 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="A modern Tic-Tac-Toe game with a simple AI opponent built in vanilla HTML, CSS, and JavaScript.">
-  <title>Tic-Tac-Toe AI</title>
+  <meta name="description" content="Arcade Hub - Play classic mini-games against intelligent AI opponents.">
+  <title>Arcade Hub - Web Mini-Games</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="games/tic-tac-toe/tic-tac-toe.css">
+  <link rel="stylesheet" href="games/rock-paper-scissors/rock-paper-scissors.css">
+  <link rel="stylesheet" href="games/connect-four/connect-four.css">
+  <link rel="stylesheet" href="games/memory-match/memory-match.css">
 </head>
 <body>
-  <div class="app-container">
-    <header class="header">
-      <h1>Tic-Tac-Toe</h1>
-      <p class="subtitle">Play against the AI</p>
+  <div class="page-wrapper">
+    <!-- Top Global Navigation Bar -->
+    <header class="navbar">
+      <div class="nav-brand" id="nav-logo">
+        <span class="logo-icon">🎮</span>
+        <span class="logo-text">ArcadeHub</span>
+      </div>
+      <button id="back-to-hub-btn" class="nav-back-btn hidden" aria-label="Back to Arcade Hub">
+        ← Back to Games
+      </button>
     </header>
 
-    <!-- Scoreboard Section -->
-    <section class="scoreboard">
-      <div class="score-card player">
-        <span class="label">PLAYER (X)</span>
-        <span id="player-score" class="val">0</span>
-      </div>
-      <div class="score-card ties">
-        <span class="label">DRAWS</span>
-        <span id="ties-score" class="val">0</span>
-      </div>
-      <div class="score-card ai">
-        <span class="label">AI (O)</span>
-        <span id="ai-score" class="val">0</span>
-      </div>
-    </section>
+    <!-- LANDING PAGE / HUB VIEW -->
+    <main id="hub-view" class="view active">
+      <section class="hero-section">
+        <h1 class="hero-title">Web Arcade Hub</h1>
+        <p class="hero-subtitle">Play classic mini-games against intelligent AI or challenge your strategic skills.</p>
+      </section>
 
-    <!-- Game Status Display -->
-    <div id="status-text" class="status-text">Your turn! (X)</div>
+      <section class="games-section">
+        <div class="section-header">
+          <h2>Game Catalog</h2>
+          <span class="game-count">4 Games Listed</span>
+        </div>
 
-    <!-- 3x3 Game Board -->
-    <main class="board" id="board" aria-label="Tic Tac Toe Board">
-      <button class="cell" data-index="0" aria-label="Cell 1"></button>
-      <button class="cell" data-index="1" aria-label="Cell 2"></button>
-      <button class="cell" data-index="2" aria-label="Cell 3"></button>
-      <button class="cell" data-index="3" aria-label="Cell 4"></button>
-      <button class="cell" data-index="4" aria-label="Cell 5"></button>
-      <button class="cell" data-index="5" aria-label="Cell 6"></button>
-      <button class="cell" data-index="6" aria-label="Cell 7"></button>
-      <button class="cell" data-index="7" aria-label="Cell 8"></button>
-      <button class="cell" data-index="8" aria-label="Cell 9"></button>
+        <div class="games-grid">
+          <!-- Tic-Tac-Toe AI Card -->
+          <article class="game-card featured" data-game="tic-tac-toe">
+            <div class="card-badge badge-playable">PLAYABLE</div>
+            <div class="card-icon"><span class="icon-emoji">❌</span></div>
+            <div class="card-body">
+              <h3>Tic-Tac-Toe AI</h3>
+              <p>Test your strategy against AI opponents with Easy, Medium, and Unbeatable Hard levels.</p>
+              <div class="card-tags">
+                <span class="tag">Strategy</span>
+                <span class="tag">3 Difficulty AI</span>
+              </div>
+            </div>
+            <button class="play-btn" data-target="tic-tac-toe">Play Game</button>
+          </article>
+
+          <!-- Connect Four Card -->
+          <article class="game-card featured" data-game="connect-four">
+            <div class="card-badge badge-playable">PLAYABLE</div>
+            <div class="card-icon"><span class="icon-emoji">🔴</span></div>
+            <div class="card-body">
+              <h3>Connect Four</h3>
+              <p>Drop colored discs to align four in a row horizontally, vertically, or diagonally.</p>
+              <div class="card-tags">
+                <span class="tag">4 in a Row</span>
+                <span class="tag">Tactical AI</span>
+              </div>
+            </div>
+            <button class="play-btn" data-target="connect-four">Play Game</button>
+          </article>
+
+          <!-- Memory Match Card -->
+          <article class="game-card featured" data-game="memory-match">
+            <div class="card-badge badge-playable">PLAYABLE</div>
+            <div class="card-icon"><span class="icon-emoji">🧠</span></div>
+            <div class="card-body">
+              <h3>Memory Match</h3>
+              <p>Test and sharpen your visual memory by flipping matching cards in fewest turns.</p>
+              <div class="card-tags">
+                <span class="tag">Puzzle</span>
+                <span class="tag">Brain Training</span>
+              </div>
+            </div>
+            <button class="play-btn" data-target="memory-match">Play Game</button>
+          </article>
+
+          <!-- Rock Paper Scissors Card -->
+          <article class="game-card featured" data-game="rock-paper-scissors">
+            <div class="card-badge badge-playable">PLAYABLE</div>
+            <div class="card-icon"><span class="icon-emoji">✂️</span></div>
+            <div class="card-body">
+              <h3>Rock Paper Scissors</h3>
+              <p>Classic quick-fire decision game against pattern-learning AI logic.</p>
+              <div class="card-tags">
+                <span class="tag">Casual</span>
+                <span class="tag">Smart AI</span>
+              </div>
+            </div>
+            <button class="play-btn" data-target="rock-paper-scissors">Play Game</button>
+          </article>
+        </div>
+      </section>
     </main>
 
-    <!-- Controls -->
-    <footer class="controls">
-      <button id="restart-btn" class="btn-restart">New Game</button>
-    </footer>
+    <!-- TIC-TAC-TOE GAME VIEW -->
+    <main id="tic-tac-toe-view" class="view hidden">
+      <div class="app-container">
+        <header class="header">
+          <h1>Tic-Tac-Toe</h1>
+          <p class="subtitle">Play against the AI</p>
+        </header>
+
+        <!-- AI Difficulty Selector -->
+        <section class="difficulty-section" aria-label="AI Difficulty Selection">
+          <div class="difficulty-options" role="radiogroup" aria-label="Difficulty Level">
+            <button class="difficulty-btn" data-level="easy" role="radio" aria-checked="false">Easy</button>
+            <button class="difficulty-btn active" data-level="medium" role="radio" aria-checked="true">Medium</button>
+            <button class="difficulty-btn" data-level="hard" role="radio" aria-checked="false">Hard</button>
+          </div>
+        </section>
+
+        <!-- Scoreboard Section -->
+        <section class="scoreboard">
+          <div class="score-card player">
+            <span class="label">PLAYER (X)</span>
+            <span id="player-score" class="val">0</span>
+          </div>
+          <div class="score-card ties">
+            <span class="label">DRAWS</span>
+            <span id="ties-score" class="val">0</span>
+          </div>
+          <div class="score-card ai">
+            <span class="label">AI (O)</span>
+            <span id="ai-score" class="val">0</span>
+          </div>
+        </section>
+
+        <!-- Game Status Display -->
+        <div id="status-text" class="status-text">Your turn! (X)</div>
+
+        <!-- 3x3 Game Board -->
+        <section class="board" id="board" aria-label="Tic Tac Toe Board">
+          <button class="cell" data-index="0" aria-label="Cell 1"></button>
+          <button class="cell" data-index="1" aria-label="Cell 2"></button>
+          <button class="cell" data-index="2" aria-label="Cell 3"></button>
+          <button class="cell" data-index="3" aria-label="Cell 4"></button>
+          <button class="cell" data-index="4" aria-label="Cell 5"></button>
+          <button class="cell" data-index="5" aria-label="Cell 6"></button>
+          <button class="cell" data-index="6" aria-label="Cell 7"></button>
+          <button class="cell" data-index="7" aria-label="Cell 8"></button>
+          <button class="cell" data-index="8" aria-label="Cell 9"></button>
+        </section>
+
+        <!-- Controls -->
+        <footer class="controls">
+          <button id="restart-btn" class="btn-restart">New Game</button>
+        </footer>
+      </div>
+    </main>
+
+    <!-- ROCK PAPER SCISSORS GAME VIEW -->
+    <main id="rock-paper-scissors-view" class="view hidden">
+      <div class="app-container rps-container">
+        <header class="header">
+          <h1>Rock Paper Scissors</h1>
+          <p class="subtitle">Play against pattern-learning AI</p>
+        </header>
+
+        <!-- RPS Scoreboard -->
+        <section class="scoreboard">
+          <div class="score-card player">
+            <span class="label">PLAYER</span>
+            <span id="rps-player-score" class="val">0</span>
+          </div>
+          <div class="score-card ties">
+            <span class="label">DRAWS</span>
+            <span id="rps-ties-score" class="val">0</span>
+          </div>
+          <div class="score-card ai">
+            <span class="label">AI</span>
+            <span id="rps-ai-score" class="val">0</span>
+          </div>
+        </section>
+
+        <!-- RPS Battle Arena -->
+        <section class="rps-arena">
+          <div class="arena-side player-side">
+            <span class="side-label">YOU</span>
+            <div id="rps-player-choice" class="choice-display">❓</div>
+          </div>
+          <div class="arena-vs">VS</div>
+          <div class="arena-side ai-side">
+            <span class="side-label">AI</span>
+            <div id="rps-ai-choice" class="choice-display">❓</div>
+          </div>
+        </section>
+
+        <!-- RPS Status Display -->
+        <div id="rps-status-text" class="status-text">Choose your move to start!</div>
+
+        <!-- Choice Selector Buttons -->
+        <section class="rps-choices" aria-label="Choose Rock, Paper, or Scissors">
+          <button class="rps-choice-btn" data-choice="rock" aria-label="Rock">
+            <span class="choice-icon">🪨</span>
+            <span class="choice-name">Rock</span>
+          </button>
+          <button class="rps-choice-btn" data-choice="paper" aria-label="Paper">
+            <span class="choice-icon">📜</span>
+            <span class="choice-name">Paper</span>
+          </button>
+          <button class="rps-choice-btn" data-choice="scissors" aria-label="Scissors">
+            <span class="choice-icon">✂️</span>
+            <span class="choice-name">Scissors</span>
+          </button>
+        </section>
+
+        <!-- Controls -->
+        <footer class="controls">
+          <button id="rps-reset-btn" class="btn-restart">Reset Scores</button>
+        </footer>
+      </div>
+    </main>
+
+    <!-- CONNECT FOUR GAME VIEW -->
+    <main id="connect-four-view" class="view hidden">
+      <div class="app-container c4-container">
+        <header class="header">
+          <h1>Connect Four</h1>
+          <p class="subtitle">Align 4 discs in a row to win</p>
+        </header>
+
+        <!-- C4 Scoreboard -->
+        <section class="scoreboard">
+          <div class="score-card player">
+            <span class="label">PLAYER (🔴)</span>
+            <span id="c4-player-score" class="val">0</span>
+          </div>
+          <div class="score-card ties">
+            <span class="label">DRAWS</span>
+            <span id="c4-ties-score" class="val">0</span>
+          </div>
+          <div class="score-card ai">
+            <span class="label">AI (🟡)</span>
+            <span id="c4-ai-score" class="val">0</span>
+          </div>
+        </section>
+
+        <!-- C4 Status Display -->
+        <div id="c4-status-text" class="status-text">Your turn! (🔴)</div>
+
+        <!-- 7x6 Connect Four Board -->
+        <section class="c4-board" id="c4-board" aria-label="Connect Four Board">
+          <div class="c4-column" data-col="0" aria-label="Column 1">
+            <div class="c4-slot" data-row="0"></div><div class="c4-slot" data-row="1"></div><div class="c4-slot" data-row="2"></div><div class="c4-slot" data-row="3"></div><div class="c4-slot" data-row="4"></div><div class="c4-slot" data-row="5"></div>
+          </div>
+          <div class="c4-column" data-col="1" aria-label="Column 2">
+            <div class="c4-slot" data-row="0"></div><div class="c4-slot" data-row="1"></div><div class="c4-slot" data-row="2"></div><div class="c4-slot" data-row="3"></div><div class="c4-slot" data-row="4"></div><div class="c4-slot" data-row="5"></div>
+          </div>
+          <div class="c4-column" data-col="2" aria-label="Column 3">
+            <div class="c4-slot" data-row="0"></div><div class="c4-slot" data-row="1"></div><div class="c4-slot" data-row="2"></div><div class="c4-slot" data-row="3"></div><div class="c4-slot" data-row="4"></div><div class="c4-slot" data-row="5"></div>
+          </div>
+          <div class="c4-column" data-col="3" aria-label="Column 4">
+            <div class="c4-slot" data-row="0"></div><div class="c4-slot" data-row="1"></div><div class="c4-slot" data-row="2"></div><div class="c4-slot" data-row="3"></div><div class="c4-slot" data-row="4"></div><div class="c4-slot" data-row="5"></div>
+          </div>
+          <div class="c4-column" data-col="5" aria-label="Column 6">
+            <div class="c4-slot" data-row="0"></div><div class="c4-slot" data-row="1"></div><div class="c4-slot" data-row="2"></div><div class="c4-slot" data-row="3"></div><div class="c4-slot" data-row="4"></div><div class="c4-slot" data-row="5"></div>
+          </div>
+          <div class="c4-column" data-col="4" aria-label="Column 5">
+            <div class="c4-slot" data-row="0"></div><div class="c4-slot" data-row="1"></div><div class="c4-slot" data-row="2"></div><div class="c4-slot" data-row="3"></div><div class="c4-slot" data-row="4"></div><div class="c4-slot" data-row="5"></div>
+          </div>
+          <div class="c4-column" data-col="6" aria-label="Column 7">
+            <div class="c4-slot" data-row="0"></div><div class="c4-slot" data-row="1"></div><div class="c4-slot" data-row="2"></div><div class="c4-slot" data-row="3"></div><div class="c4-slot" data-row="4"></div><div class="c4-slot" data-row="5"></div>
+          </div>
+        </section>
+
+        <!-- Controls -->
+        <footer class="controls">
+          <button id="c4-restart-btn" class="btn-restart">New Game</button>
+        </footer>
+      </div>
+    </main>
+
+    <!-- MEMORY MATCH GAME VIEW -->
+    <main id="memory-match-view" class="view hidden">
+      <div class="app-container memory-container">
+        <header class="header">
+          <h1>Memory Match</h1>
+          <p class="subtitle">Flip cards and match all 8 emoji pairs</p>
+        </header>
+
+        <!-- Stats Bar -->
+        <section class="scoreboard">
+          <div class="score-card">
+            <span class="label">MOVES</span>
+            <span id="memory-moves" class="val">0</span>
+          </div>
+          <div class="score-card">
+            <span class="label">MATCHES</span>
+            <span id="memory-matches" class="val">0 / 8</span>
+          </div>
+          <div class="score-card">
+            <span class="label">BEST</span>
+            <span id="memory-best" class="val">-</span>
+          </div>
+        </section>
+
+        <!-- Status Message -->
+        <div id="memory-status-text" class="status-text">Click cards to flip and match pairs!</div>
+
+        <!-- 4x4 Memory Card Grid -->
+        <section class="memory-grid" id="memory-grid" aria-label="Memory Card Grid">
+          <!-- Generated dynamically in JavaScript -->
+        </section>
+
+        <!-- Controls -->
+        <footer class="controls">
+          <button id="memory-restart-btn" class="btn-restart">New Game / Reshuffle</button>
+        </footer>
+      </div>
+    </main>
   </div>
 
   <script src="script.js"></script>
+  <script src="games/tic-tac-toe/tic-tac-toe.js"></script>
+  <script src="games/rock-paper-scissors/rock-paper-scissors.js"></script>
+  <script src="games/connect-four/connect-four.js"></script>
+  <script src="games/memory-match/memory-match.js"></script>
 </body>
 </html>

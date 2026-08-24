@@ -1,0 +1,86 @@
+/* ==========================================
+   MEMORY MATCH GAME MODULE STYLING
+   ========================================== */
+
+#memory-match-view {
+  align-items: center;
+  justify-content: center;
+}
+
+.memory-container {
+  max-width: 420px;
+}
+
+/* 4x4 Card Grid */
+.memory-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 10px;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  perspective: 800px;
+}
+
+/* 3D Card */
+.memory-card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.memory-card:hover:not(.flipped):not(.matched) {
+  transform: translateY(-2px);
+}
+
+.memory-card.flipped,
+.memory-card.matched {
+  transform: rotateY(180deg);
+  cursor: default;
+}
+
+/* Card Faces */
+.card-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 14px;
+  backface-visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.04);
+}
+
+/* Card Back (Face Down) */
+.card-back {
+  background: #ffffff;
+  border: 2px solid var(--border-color);
+  font-size: 1.5rem;
+  color: var(--text-secondary);
+  transition: border-color 0.15s ease;
+}
+
+.memory-card:hover:not(.flipped):not(.matched) .card-back {
+  border-color: #878a8c;
+  background: #f8fafc;
+}
+
+/* Card Front (Face Up) */
+.card-front {
+  background: #f0f9ff;
+  border: 2px solid var(--accent-color);
+  font-size: 2.2rem;
+  transform: rotateY(180deg);
+}
+
+/* Matched Card State */
+.memory-card.matched .card-front {
+  background: #f0fdf4;
+  border-color: var(--color-x);
+  box-shadow: 0 0 10px rgba(83, 141, 78, 0.3);
+}
