@@ -16,16 +16,16 @@
   display: flex;
   background: #f1f5f9;
   border: 1px solid var(--border-subtle);
-  border-radius: 12px;
-  padding: 4px;
-  gap: 4px;
+  border-radius: 14px;
+  padding: 5px;
+  gap: 6px;
 }
 
 .difficulty-btn {
   flex: 1;
-  padding: 8px 12px;
-  font-size: 0.85rem;
-  font-weight: 600;
+  padding: 7px 10px;
+  font-size: 0.88rem;
+  font-weight: 700;
   border: none;
   border-radius: 8px;
   background: transparent;
@@ -36,7 +36,7 @@
 
 .difficulty-btn:hover:not(.active) {
   color: var(--text-primary);
-  background: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.7);
 }
 
 .difficulty-btn.active {
@@ -50,9 +50,11 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
-  gap: 10px;
+  gap: clamp(8px, 1.5vw, 12px);
   width: 100%;
+  max-width: min(340px, 46vh);
   aspect-ratio: 1 / 1;
+  margin: 0 auto;
 }
 
 /* Cell Styling */
@@ -61,14 +63,14 @@
   border: 2px solid var(--border-color);
   border-radius: 14px;
   color: var(--text-primary);
-  font-size: 3rem;
-  font-weight: 700;
+  font-size: clamp(2.4rem, 5.5vw, 3.4rem);
+  font-weight: 800;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   outline: none;
-  transition: transform 0.15s ease, border-color 0.15s ease, background-color 0.15s ease;
+  transition: transform 0.15s ease, border-color 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease;
   user-select: none;
 }
 
@@ -76,6 +78,7 @@
   border-color: #878a8c;
   transform: translateY(-2px);
   background-color: #f8fafc;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 .cell:active:not(.x):not(.o) {
@@ -106,3 +109,4 @@
   border-color: var(--winner-bg) !important;
   animation: pulseWinner 1s infinite alternate ease-in-out;
 }
+

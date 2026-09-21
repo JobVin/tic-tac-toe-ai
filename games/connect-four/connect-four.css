@@ -8,53 +8,55 @@
 }
 
 .c4-container {
-  max-width: 460px;
+  max-width: 520px;
 }
 
 /* Connect Four Blue Board Frame */
 .c4-board {
   display: flex;
   justify-content: center;
-  gap: 8px;
+  gap: clamp(4px, 1vw, 10px);
   background: #2563eb;
-  padding: 14px;
+  padding: clamp(10px, 1.8vw, 16px);
   border-radius: 20px;
-  box-shadow: 0 8px 24px rgba(37, 99, 235, 0.25), inset 0 2px 4px rgba(255, 255, 255, 0.2);
+  box-shadow: 0 10px 30px rgba(37, 99, 235, 0.28), inset 0 2px 4px rgba(255, 255, 255, 0.3);
   width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
 }
 
 .c4-column {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: clamp(4px, 1vw, 10px);
   cursor: pointer;
-  padding: 4px 2px;
+  padding: 3px 2px;
   border-radius: 12px;
   transition: background-color 0.15s ease;
 }
 
 .c4-column:hover {
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.18);
 }
 
 /* Slot cutouts */
 .c4-slot {
-  width: 44px;
-  height: 44px;
+  width: clamp(34px, 4.8vw, 48px);
+  height: clamp(34px, 4.8vw, 48px);
   background: #f8fafc;
   border-radius: 50%;
   border: 2px solid #1d4ed8;
   position: relative;
   overflow: hidden;
   transition: transform 0.15s ease;
-  box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.15);
+  box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.18);
 }
 
 /* Red Disc (Player) */
 .c4-slot.disc-red {
   background: radial-gradient(circle at 35% 35%, #ff4d4d, #dc2626);
   border-color: #991b1b;
-  box-shadow: inset 0 -3px 6px rgba(0, 0, 0, 0.3), 0 2px 6px rgba(220, 38, 38, 0.4);
+  box-shadow: inset 0 -3px 6px rgba(0, 0, 0, 0.3), 0 3px 6px rgba(220, 38, 38, 0.4);
   animation: dropDisc 0.22s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
@@ -62,15 +64,15 @@
 .c4-slot.disc-yellow {
   background: radial-gradient(circle at 35% 35%, #fde047, #eab308);
   border-color: #854d0e;
-  box-shadow: inset 0 -3px 6px rgba(0, 0, 0, 0.3), 0 2px 6px rgba(234, 179, 8, 0.4);
+  box-shadow: inset 0 -3px 6px rgba(0, 0, 0, 0.3), 0 3px 6px rgba(234, 179, 8, 0.4);
   animation: dropDisc 0.22s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 /* Winner Disc Highlight */
 .c4-slot.winner-disc {
   animation: pulseWinner 1s infinite alternate ease-in-out;
-  border: 3px solid #ffffff !important;
-  box-shadow: 0 0 12px #ffffff, 0 0 20px rgba(255, 255, 255, 0.8) !important;
+  border: 2px solid #ffffff !important;
+  box-shadow: 0 0 12px #ffffff, 0 0 20px rgba(255, 255, 255, 0.9) !important;
 }
 
 @keyframes dropDisc {
@@ -84,13 +86,71 @@
   }
 }
 
-@media (max-width: 440px) {
-  .c4-slot {
-    width: 36px;
-    height: 36px;
+/* DESKTOP 2-COLUMN LAYOUT: ZERO-SCROLL 1-SCREEN FIT */
+@media (min-width: 760px) and (min-height: 480px) {
+  .c4-container {
+    max-width: 840px !important;
+    display: grid !important;
+    grid-template-columns: 260px 1fr !important;
+    grid-template-rows: auto auto auto auto !important;
+    grid-template-areas:
+      "header   board"
+      "score    board"
+      "status   board"
+      "controls board" !important;
+    align-items: center !important;
+    column-gap: 32px !important;
+    row-gap: 12px !important;
+    padding: 20px 28px !important;
+    text-align: left !important;
   }
-  .c4-board {
-    gap: 4px;
-    padding: 10px 8px;
+
+  .c4-container .header {
+    grid-area: header;
+    text-align: left;
+  }
+
+  .c4-container .scoreboard {
+    grid-area: score;
+  }
+
+  .c4-container .status-text {
+    grid-area: status;
+    justify-content: flex-start;
+  }
+
+  .c4-container .controls {
+    grid-area: controls;
+  }
+
+  .c4-container .c4-board {
+    grid-area: board;
+    max-width: min(480px, 50vw) !important;
+    margin: 0 auto;
+    padding: 12px 14px;
+    gap: 8px;
+  }
+
+  .c4-column {
+    gap: 8px;
+  }
+
+  .c4-slot {
+    width: clamp(38px, 4.5vw, 50px);
+    height: clamp(38px, 4.5vw, 50px);
   }
 }
+
+@media (max-width: 520px) {
+  .c4-slot {
+    width: clamp(32px, 10vw, 40px);
+    height: clamp(32px, 10vw, 40px);
+    border-width: 2px;
+  }
+  .c4-board {
+    gap: 3px;
+    padding: 8px 6px;
+    border-radius: 16px;
+  }
+}
+

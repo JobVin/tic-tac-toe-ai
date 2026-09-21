@@ -8,7 +8,7 @@
 }
 
 .memory-container {
-  max-width: 420px;
+  max-width: 480px;
 }
 
 /* 4x4 Card Grid */
@@ -16,10 +16,12 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(4, 1fr);
-  gap: 10px;
+  gap: clamp(6px, 1.2vw, 10px);
   width: 100%;
+  max-width: min(340px, 46vh);
   aspect-ratio: 1 / 1;
   perspective: 800px;
+  margin: 0 auto;
 }
 
 /* 3D Card */
@@ -47,22 +49,22 @@
   position: absolute;
   width: 100%;
   height: 100%;
-  border-radius: 14px;
+  border-radius: 12px;
   backface-visibility: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
   user-select: none;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
 }
 
 /* Card Back (Face Down) */
 .card-back {
   background: #ffffff;
   border: 2px solid var(--border-color);
-  font-size: 1.5rem;
+  font-size: clamp(1.4rem, 2.5vw, 1.8rem);
   color: var(--text-secondary);
-  transition: border-color 0.15s ease;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
 }
 
 .memory-card:hover:not(.flipped):not(.matched) .card-back {
@@ -74,7 +76,7 @@
 .card-front {
   background: #f0f9ff;
   border: 2px solid var(--accent-color);
-  font-size: 2.2rem;
+  font-size: clamp(1.8rem, 3.2vw, 2.4rem);
   transform: rotateY(180deg);
 }
 
@@ -82,5 +84,52 @@
 .memory-card.matched .card-front {
   background: #f0fdf4;
   border-color: var(--color-x);
-  box-shadow: 0 0 10px rgba(83, 141, 78, 0.3);
+  box-shadow: 0 0 10px rgba(83, 141, 78, 0.35);
 }
+
+/* DESKTOP 2-COLUMN LAYOUT: ZERO-SCROLL 1-SCREEN FIT */
+@media (min-width: 760px) and (min-height: 480px) {
+  .memory-container {
+    max-width: 780px !important;
+    display: grid !important;
+    grid-template-columns: 260px 1fr !important;
+    grid-template-rows: auto auto auto auto !important;
+    grid-template-areas:
+      "header   grid"
+      "score    grid"
+      "status   grid"
+      "controls grid" !important;
+    align-items: center !important;
+    column-gap: 32px !important;
+    row-gap: 12px !important;
+    padding: 20px 28px !important;
+    text-align: left !important;
+  }
+
+  .memory-container .header {
+    grid-area: header;
+    text-align: left;
+  }
+
+  .memory-container .scoreboard {
+    grid-area: score;
+  }
+
+  .memory-container .status-text {
+    grid-area: status;
+    justify-content: flex-start;
+  }
+
+  .memory-container .controls {
+    grid-area: controls;
+  }
+
+  .memory-container .memory-grid {
+    grid-area: grid;
+    max-width: min(340px, 48vh) !important;
+    aspect-ratio: 1 / 1;
+    margin: 0 auto;
+    gap: 8px;
+  }
+}
+
