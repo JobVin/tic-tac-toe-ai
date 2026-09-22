@@ -3,7 +3,7 @@
  */
 
 (function () {
-  let hubView, ticTacToeView, rockPaperScissorsView, connectFourView, memoryMatchView;
+  let hubView, ticTacToeView, rockPaperScissorsView, connectFourView, memoryMatchView, wordSearchView;
   let backToHubBtn, navLogo, playBtns;
 
   function initAppRouter() {
@@ -12,6 +12,7 @@
     rockPaperScissorsView = document.getElementById('rock-paper-scissors-view');
     connectFourView = document.getElementById('connect-four-view');
     memoryMatchView = document.getElementById('memory-match-view');
+    wordSearchView = document.getElementById('word-search-view');
 
     backToHubBtn = document.getElementById('back-to-hub-btn');
     navLogo = document.getElementById('nav-logo');
@@ -37,7 +38,7 @@
 
   /**
    * SPA View Switcher
-   * @param {string} viewName - 'hub', 'tic-tac-toe', 'rock-paper-scissors', 'connect-four', or 'memory-match'
+   * @param {string} viewName - 'hub', 'tic-tac-toe', 'rock-paper-scissors', 'connect-four', 'memory-match', or 'word-search'
    */
   function showView(viewName) {
     if (hubView) hubView.classList.add('hidden');
@@ -45,6 +46,7 @@
     if (rockPaperScissorsView) rockPaperScissorsView.classList.add('hidden');
     if (connectFourView) connectFourView.classList.add('hidden');
     if (memoryMatchView) memoryMatchView.classList.add('hidden');
+    if (wordSearchView) wordSearchView.classList.add('hidden');
 
     if (viewName === 'tic-tac-toe' && ticTacToeView) {
       ticTacToeView.classList.remove('hidden');
@@ -62,6 +64,10 @@
       memoryMatchView.classList.remove('hidden');
       if (backToHubBtn) backToHubBtn.classList.remove('hidden');
       if (window.location.hash !== '#memory-match') window.location.hash = 'memory-match';
+    } else if (viewName === 'word-search' && wordSearchView) {
+      wordSearchView.classList.remove('hidden');
+      if (backToHubBtn) backToHubBtn.classList.remove('hidden');
+      if (window.location.hash !== '#word-search') window.location.hash = 'word-search';
     } else {
       if (hubView) hubView.classList.remove('hidden');
       if (backToHubBtn) backToHubBtn.classList.add('hidden');
@@ -79,6 +85,8 @@
       showView('connect-four');
     } else if (hash === 'memory-match') {
       showView('memory-match');
+    } else if (hash === 'word-search') {
+      showView('word-search');
     } else {
       showView('hub');
     }

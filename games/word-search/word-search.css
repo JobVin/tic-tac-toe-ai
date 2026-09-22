@@ -1,0 +1,249 @@
+/* ==========================================
+   WORD SEARCH GAME MODULE STYLING
+   ========================================== */
+
+#word-search-view {
+  align-items: center;
+  justify-content: center;
+}
+
+.ws-container {
+  max-width: 520px;
+}
+
+/* Category & Difficulty Selection Pills */
+.ws-category-section {
+  width: 100%;
+}
+
+.ws-categories {
+  display: flex;
+  background: #f1f5f9;
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  padding: 3px;
+  gap: 4px;
+}
+
+.ws-category-btn {
+  flex: 1;
+  padding: 5px 6px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 7px;
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.ws-category-btn:hover:not(.active) {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.ws-category-btn.active {
+  background: #ffffff;
+  color: var(--text-primary);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.06);
+}
+
+/* Target Words List Container */
+.ws-word-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  width: 100%;
+  justify-content: center;
+  margin: 2px 0;
+  max-height: 80px;
+  overflow-y: auto;
+}
+
+.ws-word-chip {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  padding: 3px 8px;
+  border-radius: 7px;
+  background: #f8fafc;
+  color: #334155;
+  border: 1px solid var(--border-subtle);
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.ws-word-chip.found {
+  background: #dcfce7;
+  color: #15803d;
+  border-color: #86efac;
+  text-decoration: line-through;
+  transform: scale(0.96);
+  opacity: 0.85;
+}
+
+/* Base Word Search Letter Grid */
+.ws-grid {
+  display: grid;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  margin: 0 auto;
+  user-select: none;
+  touch-action: none;
+  transition: max-width 0.25s ease;
+}
+
+/* Easy Mode Grid: Small Square with Large Letters */
+.ws-grid.ws-grid-easy {
+  max-width: min(280px, 38vh);
+  gap: 5px;
+}
+
+.ws-grid.ws-grid-easy .ws-cell {
+  font-size: clamp(1.2rem, 2.3vw, 1.5rem);
+  border-radius: 10px;
+}
+
+/* Medium Mode Grid: Medium Square */
+.ws-grid.ws-grid-medium {
+  max-width: min(340px, 45vh);
+  gap: 4px;
+}
+
+.ws-grid.ws-grid-medium .ws-cell {
+  font-size: clamp(0.95rem, 1.6vw, 1.2rem);
+  border-radius: 8px;
+}
+
+/* Hard Mode Grid: Big Square with Lots of Letters */
+.ws-grid.ws-grid-hard {
+  max-width: min(390px, 50vh);
+  gap: 3px;
+}
+
+.ws-grid.ws-grid-hard .ws-cell {
+  font-size: clamp(0.8rem, 1.25vw, 1rem);
+  border-radius: 6px;
+}
+
+/* Letter Cell */
+.ws-cell {
+  background: #ffffff;
+  border: 1.5px solid var(--border-subtle);
+  color: var(--text-primary);
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.12s ease, border-color 0.12s ease, transform 0.1s ease;
+  user-select: none;
+}
+
+.ws-cell:hover:not(.found):not(.selected) {
+  border-color: #94a3b8;
+  background-color: #f1f5f9;
+  transform: scale(1.04);
+}
+
+/* Currently Dragged / Selected State */
+.ws-cell.selected {
+  background-color: #2563eb !important;
+  color: #ffffff !important;
+  border-color: #1d4ed8 !important;
+  transform: scale(1.05);
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.3);
+  z-index: 2;
+}
+
+/* Permanently Found Word Styling */
+.ws-cell.found {
+  color: #ffffff !important;
+  font-weight: 800;
+  border-color: transparent !important;
+}
+
+.ws-cell.found-color-0 { background-color: #16a34a !important; box-shadow: 0 2px 6px rgba(22, 163, 74, 0.25); }
+.ws-cell.found-color-1 { background-color: #7c3aed !important; box-shadow: 0 2px 6px rgba(124, 58, 237, 0.25); }
+.ws-cell.found-color-2 { background-color: #ea580c !important; box-shadow: 0 2px 6px rgba(234, 88, 12, 0.25); }
+.ws-cell.found-color-3 { background-color: #0284c7 !important; box-shadow: 0 2px 6px rgba(2, 132, 199, 0.25); }
+.ws-cell.found-color-4 { background-color: #db2777 !important; box-shadow: 0 2px 6px rgba(219, 39, 119, 0.25); }
+.ws-cell.found-color-5 { background-color: #ca8a04 !important; box-shadow: 0 2px 6px rgba(202, 138, 4, 0.25); }
+.ws-cell.found-color-6 { background-color: #0d9488 !important; box-shadow: 0 2px 6px rgba(13, 148, 136, 0.25); }
+.ws-cell.found-color-7 { background-color: #4f46e5 !important; box-shadow: 0 2px 6px rgba(79, 70, 229, 0.25); }
+
+/* Celebration Wave on Completion */
+.ws-grid.completed .ws-cell {
+  animation: pulseWinner 1s infinite alternate ease-in-out;
+}
+
+/* DESKTOP 2-COLUMN ARCADE LAYOUT: ZERO-SCROLL 1-SCREEN FIT */
+@media (min-width: 760px) and (min-height: 480px) {
+  .ws-container {
+    max-width: 860px !important;
+    display: grid !important;
+    grid-template-columns: 290px 1fr !important;
+    grid-template-rows: auto auto auto auto auto auto auto !important;
+    grid-template-areas:
+      "header   grid"
+      "diff     grid"
+      "cats     grid"
+      "score    grid"
+      "words    grid"
+      "status   grid"
+      "controls grid" !important;
+    align-items: center !important;
+    column-gap: 32px !important;
+    row-gap: 8px !important;
+    padding: 18px 26px !important;
+    text-align: left !important;
+  }
+
+  .ws-container .header {
+    grid-area: header;
+    text-align: left;
+  }
+
+  .ws-container .difficulty-section {
+    grid-area: diff;
+  }
+
+  .ws-container .ws-category-section {
+    grid-area: cats;
+  }
+
+  .ws-container .scoreboard {
+    grid-area: score;
+  }
+
+  .ws-container .ws-word-list {
+    grid-area: words;
+    justify-content: flex-start;
+  }
+
+  .ws-container .status-text {
+    grid-area: status;
+    justify-content: flex-start;
+  }
+
+  .ws-container .controls {
+    grid-area: controls;
+  }
+
+  .ws-container .ws-grid {
+    grid-area: grid;
+    aspect-ratio: 1 / 1;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 520px) {
+  .ws-grid.ws-grid-hard .ws-cell {
+    font-size: 0.72rem;
+  }
+  .ws-grid.ws-grid-hard {
+    gap: 2px;
+  }
+}

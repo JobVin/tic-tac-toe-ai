@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="games/rock-paper-scissors/rock-paper-scissors.css">
   <link rel="stylesheet" href="games/connect-four/connect-four.css">
   <link rel="stylesheet" href="games/memory-match/memory-match.css">
+  <link rel="stylesheet" href="games/word-search/word-search.css">
 </head>
 <body>
   <div class="page-wrapper">
@@ -37,7 +38,7 @@
       <section class="games-section">
         <div class="section-header">
           <h2>Game Catalog</h2>
-          <span class="game-count">4 Games Listed</span>
+          <span class="game-count">5 Games Listed</span>
         </div>
 
         <div class="games-grid">
@@ -99,6 +100,21 @@
               </div>
             </div>
             <button class="play-btn" data-target="rock-paper-scissors">Play Game</button>
+          </article>
+
+          <!-- Word Search Card -->
+          <article class="game-card featured" data-game="word-search">
+            <div class="card-badge badge-playable">PLAYABLE</div>
+            <div class="card-icon"><span class="icon-emoji">🔤</span></div>
+            <div class="card-body">
+              <h3>Word Search</h3>
+              <p>Find hidden words horizontally, vertically, or diagonally in themed letter grids.</p>
+              <div class="card-tags">
+                <span class="tag">Puzzle</span>
+                <span class="tag">Brain Training</span>
+              </div>
+            </div>
+            <button class="play-btn" data-target="word-search">Play Game</button>
           </article>
         </div>
       </section>
@@ -320,6 +336,65 @@
         </footer>
       </div>
     </main>
+
+    <!-- WORD SEARCH GAME VIEW -->
+    <main id="word-search-view" class="view hidden">
+      <div class="app-container ws-container">
+        <header class="header">
+          <h1>Word Search</h1>
+          <p class="subtitle">Find all the hidden words!</p>
+        </header>
+
+        <!-- Difficulty Selector -->
+        <section class="difficulty-section" aria-label="Puzzle Difficulty Selection">
+          <div class="difficulty-options" role="radiogroup" aria-label="Difficulty Level">
+            <button class="difficulty-btn ws-diff-btn" data-diff="easy" role="radio" aria-checked="false">Easy (Small)</button>
+            <button class="difficulty-btn ws-diff-btn active" data-diff="medium" role="radio" aria-checked="true">Medium</button>
+            <button class="difficulty-btn ws-diff-btn" data-diff="hard" role="radio" aria-checked="false">Hard (Big)</button>
+          </div>
+        </section>
+
+        <!-- Category Selector -->
+        <section class="ws-category-section" aria-label="Puzzle Category Selection">
+          <div class="ws-categories" role="radiogroup" aria-label="Category Selection">
+            <button class="ws-category-btn active" data-cat="tech" role="radio" aria-checked="true">Tech</button>
+            <button class="ws-category-btn" data-cat="space" role="radio" aria-checked="false">Space</button>
+            <button class="ws-category-btn" data-cat="animals" role="radio" aria-checked="false">Animals</button>
+            <button class="ws-category-btn" data-cat="gaming" role="radio" aria-checked="false">Gaming</button>
+          </div>
+        </section>
+
+        <!-- Score & Timer Section -->
+        <section class="scoreboard">
+          <div class="score-card">
+            <span class="label">FOUND</span>
+            <span id="ws-found-score" class="val">0 / 5</span>
+          </div>
+          <div class="score-card">
+            <span class="label">TIME</span>
+            <span id="ws-timer" class="val">00:00</span>
+          </div>
+        </section>
+
+        <!-- Target Words To Find -->
+        <section class="ws-word-list" id="ws-word-list" aria-label="Words To Find">
+          <!-- Generated dynamically in JavaScript -->
+        </section>
+
+        <!-- Status Display -->
+        <div id="ws-status-text" class="status-text">Drag or tap letters to select words!</div>
+
+        <!-- 8x8 Letter Grid -->
+        <section class="ws-grid" id="ws-grid" aria-label="Word Search Grid">
+          <!-- Generated dynamically in JavaScript -->
+        </section>
+
+        <!-- Controls -->
+        <footer class="controls">
+          <button id="ws-restart-btn" class="btn-restart">New Puzzle</button>
+        </footer>
+      </div>
+    </main>
   </div>
 
   <script src="script.js"></script>
@@ -327,5 +402,6 @@
   <script src="games/rock-paper-scissors/rock-paper-scissors.js"></script>
   <script src="games/connect-four/connect-four.js"></script>
   <script src="games/memory-match/memory-match.js"></script>
+  <script src="games/word-search/word-search.js"></script>
 </body>
 </html>
